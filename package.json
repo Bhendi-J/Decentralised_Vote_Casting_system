@@ -1,0 +1,38 @@
+{
+  "name": "votechain-mini-project",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A basic blockchain voting mini project using React, MetaMask and Solidity.",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "compile": "hardhat compile && node scripts/export-abi.js",
+    "chain": "hardhat node --hostname 127.0.0.1",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "dev": "vite --host 127.0.0.1",
+    "start": "npm run compile && node scripts/start.js",
+    "test": "npm run compile && node --test test/*.test.js",
+    "test:browser": "playwright test",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "npm test && npm run build"
+  },
+  "dependencies": {
+    "ethers": "6.17.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "overrides": {
+    "tmp": "0.2.7"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "4.2.0",
+    "@playwright/test": "1.64.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "hardhat": "3.19.0",
+    "solc": "0.8.30",
+    "vite": "8.3.4"
+  }
+}

@@ -1,0 +1,126 @@
+MINIPROJECT REPORT
+
+VoteChain- Blockchain Based Secure Voting System
+1. Introduction / Overview
+
+A Blockchain-Based Voting System is a decentralized application (dApp) designed to record votes in a transparent, verifiable, and tamper-resistant manner. Traditional voting systems may depend on centralized databases and manual processes, which can create challenges involving record manipulation, auditability, accessibility, and trust.
+This project uses an Ethereum-compatible blockchain and a smart contract to maintain election details and vote records. A web interface allows an eligible participant to connect a wallet, view the available candidates, and cast a vote. The smart contract applies rules such as election status, candidate validity, and one vote per wallet address. Once a transaction is confirmed, the vote record is stored on the blockchain and can be independently inspected.
+The project is intended as an educational prototype for understanding blockchain, smart contracts, wallet-based identity and decentralized application development. It is not a production-ready system for public or legally binding elections.
+2. Purpose and Goals
+
+Purpose:
+The purpose of this project is to demonstrate how blockchain technology can support a transparent voting workflow by maintaining a shared, append-only record of votes and enforcing election rules through a smart contract.
+
+Goals:
+Allow a user to connect an Ethereum-compatible wallet, such as MetaMask, to the voting application.
+Display election information and the list of candidates in a clear web interface.
+Record votes through a smart contract and prevent the same wallet address from voting more than once in an election.
+Allow users to view election status and aggregate results recorded by the contract.
+Demonstrate a full-stack decentralized application integrating a frontend, wallet, blockchain network, and smart contract.
+
+
+
+3. Technology Stack
+￼
+4. System Architecture & Workflow
+4.1 Architecture Overview
+The system consists of a React frontend, a MetaMask wallet, an Ethereum-compatible blockchain, and a Solidity smart contract. The frontend presents election information and requests transactions. MetaMask asks the user to approve the transaction and signs it with the selected account. The transaction is submitted to the blockchain, where the smart contract validates the request and updates the vote count if all rules are satisfied.
+In the prototype, Hardhat can be used as a local blockchain for development and testing. The local network is not a live public election network; it is a controlled environment for demonstrating the workflow.
+4.2 Workflow Steps
+
+Wallet Connection: 
+The user opens the web application and connects MetaMask. 
+The application reads the connected account address and checks that the wallet is connected to the expected network.
+Election and Candidate Display: 
+The frontend calls read-only contract functions to retrieve the election status, candidate names and current vote totals where these are made visible by the prototype.
+Vote Selection: 
+The user selects one candidate and confirms the action. 
+The frontend checks basic input validity before requesting a transaction.
+Transaction Signing: 
+MetaMask displays the transaction details and asks the user to approve it.
+After approval, the wallet signs and submits the transaction.
+Smart-Contract Validation: 
+The contract checks that voting is open, the candidate exists and the connected address has not already voted. 
+If the checks pass, the contract records the vote and marks the address as having voted.
+Confirmation and Results: 
+The frontend waits for transaction confirmation, displays a success or failure message and refreshes the election information from the blockchain.
+
+4.3 System Architecture Diagram
+
+Voter / User
+|
+▼
+
+React + Vite Web Interface
+|
+▼
+
+ethers.js
+|
+▼
+
+MetaMask Wallet
+|
+Signs Transaction
+|
+▼
+
+Ethereum-Compatible Blockchain
+(Hardhat Local Network)
+|
+▼
+
+Solidity Voting Smart Contract
+|
+------------------------------------
+                                                               |                      |                       |
+                                                                    ▼                     ▼                      ▼
+Election      Voter Status   Vote Totals
+State
+|
+▼
+
+Transaction Confirmation
+|
+▼
+
+Updated Results Display
+on Web Interface
+
+4.4 Implementation
+￼
+Figure 1: Voting application home page with the Connect Wallet button.
+
+￼
+Figure 2: Candidate list and vote-selection interface
+
+￼
+Figure 3: MetaMask transaction confirmation for casting a vote
+
+￼
+Figure 4: Successful transaction confirmation and updated vote totals
+
+￼
+Figure 5: Hardhat terminal or test output showing contract deployment and test results
+5. Key Features
+Wallet-Based Access: MetaMask connects a blockchain account to the application and signs voting transactions.
+Smart-Contract Rules: The contract validates candidate selection, election status, and duplicate voting by the same address.
+Tamper-Resistant Records: Confirmed blockchain transactions are difficult to alter without changing the chain’s accepted history.
+Transparent Verification: Authorized observers can inspect contract state and transactions on the network used by the prototype.
+Live Results View: The interface can retrieve candidate vote totals directly from the smart contract.
+Decentralized Execution: Voting rules are executed by the blockchain network rather than solely by a central application server.
+6. Advantages
+Tamper Resistance:  Once confirmed, records are difficult to modify without detection.
+Rule Enforcement: The smart contract applies the same programmed checks to each transaction.
+Auditability: Transactions can be reviewed to support technical auditing of the prototype.
+Learning Value: The project demonstrates practical integration of frontend development, wallets, Solidity and blockchain development. 
+7. Limitations
+Wallet Address Is Not Proof of Voter Eligibility: A wallet address alone does not establish a person's real-world identity or right to vote. A real election needs secure registration and eligibility verification.
+Privacy: Public blockchains may expose voting activity and transaction links. A production system must protect ballot secrecy and avoid publishing information that reveals voter choices.
+One Address, One Vote Is Limited: A user may control multiple addresses, so the smart contract’s duplicate-address check does not prevent all forms of duplicate participation.
+Network and Gas Costs: Transactions may require fees on public networks and can be delayed by congestion.
+Smart-Contract Risks: Programming errors, poor access controls, or insecure deployment could affect the election. Independent review and extensive testing are necessary.
+Prototype Only: A local Hardhat network is intended for testing. This project must not be used for real, public, or legally binding elections without substantial security, privacy, accessibility, and governance work.
+8. Conclusion
+The Blockchain-Based Voting System demonstrates how an Ethereum-compatible blockchain and a Solidity smart contract can be used to build a transparent, verifiable voting prototype. The application combines a web interface, MetaMask wallet integration, ethers.js, and a smart contract to let users view candidates, submit a vote, and inspect updated results.
+The project highlights useful blockchain concepts such as transaction signing, decentralized execution, smart-contract validation, and tamper-resistant records. However, blockchain alone does not guarantee voter eligibility, ballot secrecy, or resistance to coercion and multiple identities. The prototype is therefore suitable for academic demonstration and further experimentation, not for conducting a real election.

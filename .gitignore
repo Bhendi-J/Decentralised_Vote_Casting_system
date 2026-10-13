@@ -1,0 +1,15 @@
+node_modules/
+.npm-cache/
+.cache/
+.local/
+cache/
+artifacts/
+dist/
+.env
+.env.*
+!.env.example
+public/deployment.json
+src/generated/
+playwright-report/
+test-results/
+.DS_Store
